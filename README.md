@@ -7,12 +7,11 @@ This project is to train a ConvNet model to drive the car autonomously in the si
 
 ### Driving Test No.3 (completed first track):
 
-[![image3](https://img.youtube.com/vi/xh-KrAsoq_k/0.jpg)](https://www.youtube.com/watch?v=xh-KrAsoq_k)
+[![image3](https://img.youtube.com/vi/ZOaCBuJ7Y2Q/0.jpg)](https://www.youtube.com/watch?v=ZOaCBuJ7Y2Q)
 
-The model is using NVIDIA Architecture. Trained on a relatively large set of (highly unbalanced) data. This round test looks great, however, I suspect the model is overfitting as it is kind of repeating its behavior at the same curve right after the bridge.
+The model is using NVIDIA Architecture. Trained on a relatively large set of (highly unbalanced) data. This test looks great and can be further improved.
 
 Next step will try balance the data as much as possible and also try to use images from side cameras(The above tests are using front camera only).
-
 
 
 ### Driving Test No.2:
@@ -34,5 +33,4 @@ Trained on a small set of data using a fairly simple model.
 
 
 #### Futher improvement of the model and more data processing are ongoing.
-
 
