@@ -5,7 +5,7 @@
 This project is to train a ConvNet model to drive the car autonomously in the simulator. 
 
 
-### Driving Test No.3:
+### Driving Test No.3 (completedly first track):
 
 [![image3](https://img.youtube.com/vi/xh-KrAsoq_k/0.jpg)](https://www.youtube.com/watch?v=xh-KrAsoq_k)
 
