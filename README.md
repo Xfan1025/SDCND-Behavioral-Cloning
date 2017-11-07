@@ -1,8 +1,14 @@
 
-# Behavioral-Cloning
+# Behavioral-Cloning (ongoing project)
 
 
 This project is to train a ConvNet model to drive the car autonomously in the simulator. 
+
+### Driving Test No.4 (completed second track):
+
+[![image3](https://img.youtube.com/vi/iT31m75qitY/0.jpg)](https://www.youtube.com/watch?v=iT31m75qitY)
+
+
 
 
 ### Driving Test No.3 (completed first track):
