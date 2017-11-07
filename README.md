@@ -1,4 +1,4 @@
-Table of Contents(updateing)
+Table of Contents(updating)
 =================
 
    * [Behavioral Cloning](#behavioral-cloning)
@@ -176,3 +176,7 @@ After the collection process, I had X number of data points. I then preprocessed
 I finally randomly shuffled the data set and put 20% of the data into a validation set.
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3-5 . I used an adam optimizer so that manually tuning the learning rate wasn't necessary.
+
+# Next Challenge
+
+Build one model trained using data from one track only to be able to complete both two tracks.
