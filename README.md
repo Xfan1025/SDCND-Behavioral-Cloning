@@ -13,12 +13,17 @@ Table of Contents(updating)
       * [Objective, Loss function, Learning rate](#objective-loss-function-learning-rate)
       * [Overfitting Handling](#overfitting-handling)
    * [Data Preprocessing Strategy](#data-preprocessing-strategy)
-      * [Image Preprocessing](#data-preprocessing)
+      * [Image Preprocessing](#image-preprocessing)
+          * [Cropping](#cropping)
+          * [Normalization](#Normalization)
+          * [Rotation](#rotation)
+          * [Augmentation](#augmentation)
       * [Steering Angle Preprocessing](#steering-angle-preprocessing)
+      * [Final Model Architecture](#final-model-architecture)
    * [Training Strategy](#training-strategy)
-      * [Building an Overfitted Model with Minimal Data](#building-an-overfitted-model-with-minimal-data)
-      * [Building a Regularized Model with Augmented Data](#building-a-regularized-model-with-augmented-data)
-   * [Next](#next)
+      * [Transfer Learning](#transfer-learning)
+   * [Driving Test Log](#driving-test-log)
+   * [Next Challenge](#next)
 
 ---
 
@@ -45,14 +50,23 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[train]: ./asset/train_image.png "Training Image"
+[flipped]: ./asset/train_image_flipped.png "Flipped Training Image"
 
+[recovery1]: ./asset/recovery1.png "Recovery Image"
+[recovery2]: ./asset/recovery2.png "Recovery Image"
+[recovery3]: ./asset/recovery3.png "Recovery Image"
+[origin]: ./asset/origin_image.png "Original Image"
+[flipped]: ./asset/flipped_image.png "Flipped Image"
 
+[bgr]: ./asset/bgr.png "BGR Image"
+[rgb]: ./asset/rgb.png "RGB Image"
+
+[input]: ./asset/input.png "Input Image"
+[cropped]: ./asset/cropped.png "Cropped Image"
+
+[hist]: ./asset/hist.png "Histogram"
+[hist2]: ./asset/hist2.png "Balanced Histogram"
 
 ---
 # Files & Code Quality
@@ -95,9 +109,10 @@ The model_track1.py & model_track2.py files contain the code for training and sa
 
 My model is using the [NVIDIA Architecture](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) implemented in Keras.
 
-(Using model_track1.py for reference)
+[![NVIDIA Architecture](https://devblogs.nvidia.com/parallelforall/wp-content/uploads/2016/08/cnn-architecture-624x890.png)]
 
-The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (code line 143).
+
+The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras `lambda` layer (code line 143 in model_track1.py).
 
 ## Objective, Loss function, Learning rate
 
@@ -107,75 +122,164 @@ I use `Adam` as my optimizer since it is a proven good choice for many tasks. I 
 
 ## Overfitting Handling
 
-The model contains dropout layers in order to reduce overfitting (lines 153, 162). I also considered max_pooling. However, it did not significantly improve the performance so I decided not to use pooling.
-
+The model contains dropout layers in order to reduce overfitting (lines 153, 162). I also tried max_pooling. However, it did not significantly improve the performance so I decided not to use pooling.
 
 
 # Data Preprocessing Strategy
 
-Training data was chosen to keep the vehicle driving on the road. I keep driving in the center of the road as much as possible. And because I only used data from the car's front camera, I used a data recovering from the left and right sides of the road to the center of the road. That said, I drive to the left and right sides of the road purposely but without recording it down, then I drive back to the center with recording on. This technique should help tell the model the edges of the road are the areas it should definitely avoid. And it performs great. An alternative solution to this, should be using side cameras for training which is what I am gonna try out next.
+Training data was chosen to keep the vehicle driving on the road. I keep driving in the center of the road as much as possible. And because I only used data from the car's front camera, I recorded data recovering from the left and right sides of the road to the center of the road. That said, I drive to the left and right sides of the road purposely but without recording it down, then I drive back to the center with recording on. This technique should help tell the model that the edges of the road are the areas it should definitely avoid. And it performs great. An alternative solution to this, should be using side cameras for training which is what I am gonna try out next.
 
 ## Image Preprocessing
-
-## Steering Angle Preprocessing
-
-# Training Strategy
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 192). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
-
-#### 1. Solution Design Approach
-
-
-
-The overall strategy for deriving a model architecture was to ...
-
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting.
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ...
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
-
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
-
-####2. Final Model Architecture
-
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
-
-####3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to avoid those edges as much as possible. These images show what a recovery looks like:
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+![alt text][recovery1]
+![alt text][recovery2]
+![alt text][recovery3]
 
-Then I repeated this process on track two in order to get more data points.
+The same process was applied to track two's model as well.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+### Cropping
 
-![alt text][image6]
-![alt text][image7]
+To fit the NVIDIA Architecture, I used Keras `cropping2d` layer to crop the input images.
 
-Etc ....
+![text][input]
 
-After the collection process, I had X number of data points. I then preprocessed this data as stated above.
+This image is what my model is actually seeing:
+
+![text][cropped]
+
+### Normalization
+To be able to normalize the training data and the test data from simulator while in autonomous mode, I decided to add a Keras `lambda` layer into the structure.
+
+### Rotation
+The default color scheme used by `cv2.imread` is `BGR`. However, the image supplied for test in the simulator will be `RGB`. So it makes sense to convert the color scheme from `BGR` back to `RGB`.
+
+Image red by cv2
+
+![alt text][bgr]
+
+Rotated using `image[:,:,::-1]`
+
+![alt text][rgb]
+
+### Augmentation
+
+To augment the data sat, I also flipped images and angles thinking that this would double my data size and also make the model more generalised. For example, here is an image that has then been flipped:
+
+Original image
+
+![alt text][origin]
+
+Flipped image using `np.fliplr(img)`
+
+![alt text][flipped]
 
 
-I finally randomly shuffled the data set and put 20% of the data into a validation set.
+## Steering Angle Preprocessing
+
+This analysis of labels (Steering Angles) distribution is quite important.
+
+This is the histogram of steering angle data I collected from track1.
+
+![alt text][hist]
+
+As the data is highly unbalanced, the model may tend to drive straight ahead for most of the time. Because the data is highly unbalanced, any small noise will confuse the model. So to make the model more robust, I decided to try to balance the data. For this data shown above, it's fairly simple, I just removed 95% of steering angle of zeros.
+
+Histogram of the data after 90% of zeros been removed.
+
+![alt text][hist2]
+
+## Final Model Architecture
+```
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+cropping2d_1 (Cropping2D)        (None, 66, 200, 3)    0           cropping2d_input_1[0][0]         
+____________________________________________________________________________________________________
+lambda_1 (Lambda)                (None, 66, 200, 3)    0           cropping2d_1[0][0]               
+____________________________________________________________________________________________________
+convolution2d_1 (Convolution2D)  (None, 31, 98, 24)    1824        lambda_1[0][0]                   
+____________________________________________________________________________________________________
+convolution2d_2 (Convolution2D)  (None, 14, 47, 36)    21636       convolution2d_1[0][0]            
+____________________________________________________________________________________________________
+dropout_1 (Dropout)              (None, 14, 47, 36)    0           convolution2d_2[0][0]            
+____________________________________________________________________________________________________
+convolution2d_3 (Convolution2D)  (None, 5, 22, 48)     43248       dropout_1[0][0]                  
+____________________________________________________________________________________________________
+convolution2d_4 (Convolution2D)  (None, 3, 20, 64)     27712       convolution2d_3[0][0]            
+____________________________________________________________________________________________________
+dropout_2 (Dropout)              (None, 3, 20, 64)     0           convolution2d_4[0][0]            
+____________________________________________________________________________________________________
+convolution2d_5 (Convolution2D)  (None, 1, 18, 64)     36928       dropout_2[0][0]                  
+____________________________________________________________________________________________________
+flatten_1 (Flatten)              (None, 1152)          0           convolution2d_5[0][0]            
+____________________________________________________________________________________________________
+dense_1 (Dense)                  (None, 1164)          1342092     flatten_1[0][0]                  
+____________________________________________________________________________________________________
+dense_2 (Dense)                  (None, 100)           116500      dense_1[0][0]                    
+____________________________________________________________________________________________________
+dense_3 (Dense)                  (None, 50)            5050        dense_2[0][0]                    
+____________________________________________________________________________________________________
+dense_4 (Dense)                  (None, 10)            510         dense_3[0][0]                    
+____________________________________________________________________________________________________
+dense_5 (Dense)                  (None, 1)             11          dense_4[0][0]                    
+====================================================================================================
+Total params: 1,595,511
+Trainable params: 1,595,511
+Non-trainable params: 0
+____________________________________________________________________________________________________
+```
+# Training Strategy
+
+The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 192). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+
+I randomly shuffled the data set and put 20% of the data into a validation set.
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3-5 . I used an adam optimizer so that manually tuning the learning rate wasn't necessary.
+
+The final step was to run the simulator to see how well the car was driving around track. There were a few spots where the vehicle fell off the track. To improve the driving behavior in these cases, I collected more data at those spots and used those new data to train my pretrained model. This made my new training really fast and aim to teach the model pay extra attention to those failure points.
+
+At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+
+
+
+# Driving Test Log
+
+### Driving Test No.4 (completed second track):
+
+[![text](https://img.youtube.com/vi/iT31m75qitY/0.jpg)](https://www.youtube.com/watch?v=iT31m75qitY)
+
+
+### Driving Test No.3 (completed first track):
+
+[![text](https://img.youtube.com/vi/ZOaCBuJ7Y2Q/0.jpg)](https://www.youtube.com/watch?v=ZOaCBuJ7Y2Q)
+
+The model is using NVIDIA Architecture. Trained on a relatively large set of (highly unbalanced) data. This test looks great and can be further improved.
+
+Next step will try balance the data as much as possible and also try to use images from side cameras(The above tests are using front camera only).
+
+
+### Driving Test No.2:
+
+[![text](https://img.youtube.com/vi/9pI-xAmTzIs/0.jpg)](https://www.youtube.com/watch?v=9pI-xAmTzIs)
+
+Modified LeNet Trained on data mostly focusing on curves.
+
+
+
+### Driving Test No.1:
+
+[![image1](https://img.youtube.com/vi/SaXprRTi3NU/0.jpg)](https://www.youtube.com/watch?v=SaXprRTi3NU)
+
+Simple ConvNet Trained on a small set of data using a fairly simple model.
+
+
+
 
 # Next Challenge
 
