@@ -2,9 +2,9 @@ Table of Contents(updating)
 =================
 
    * [Behavioral Cloning](#behavioral-cloning)
-   * [Check this Video out - less than 2 minutes!](check-this-video-out---2-minutes-watching)
+   * [Check this video out - 2 minutes watching!](#check-this-video-out---2-minutes-watching)
    * [Goal](#goal)
-   * [Files & Code Quality](#files-&-code-quality)
+   * [Files & Code Quality](#files-&amp;-code-quality)
       * [Files](#files)
       * [Functional Code](#functional-code)
       * [Code Readability](#code-readability)
@@ -15,7 +15,7 @@ Table of Contents(updating)
    * [Data Preprocessing Strategy](#data-preprocessing-strategy)
       * [Image Preprocessing](#image-preprocessing)
           * [Cropping](#cropping)
-          * [Normalization](#Normalization)
+          * [Normalization](#normalization)
           * [Rotation](#rotation)
           * [Augmentation](#augmentation)
       * [Steering Angle Preprocessing](#steering-angle-preprocessing)
@@ -23,7 +23,7 @@ Table of Contents(updating)
    * [Training Strategy](#training-strategy)
       * [Transfer Learning](#transfer-learning)
    * [Driving Test Log](#driving-test-log)
-   * [Next Challenge](#next)
+   * [Next Challenge](#next-challenge)
 
 ---
 
@@ -103,7 +103,7 @@ python drive.py model_track2.h5
 
 The model_track1.py & model_track2.py files contain the code for training and saving the convolution neural network model. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-# Model Architecture and Data collecting Strategy
+# Model Architecture
 
 ## Architecture: NVIDIA End-to-End Deep Learning Network
 
@@ -242,6 +242,7 @@ I randomly shuffled the data set and put 20% of the data into a validation set.
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3-5 . I used an adam optimizer so that manually tuning the learning rate wasn't necessary.
 
+### Transfer Learning
 The final step was to run the simulator to see how well the car was driving around track. There were a few spots where the vehicle fell off the track. To improve the driving behavior in these cases, I collected more data at those spots and used those new data to train my pretrained model. This made my new training really fast and aim to teach the model pay extra attention to those failure points.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
