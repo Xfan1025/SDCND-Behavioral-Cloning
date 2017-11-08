@@ -107,7 +107,7 @@ The model_track1.py & model_track2.py files contain the code for training and sa
 
 ## Architecture: NVIDIA End-to-End Deep Learning Network
 
-My model is using the [NVIDIA Architecture](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/) implemented in Keras.
+My model is using the [NVIDIA Architecture](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) implemented in Keras.
 
 [![NVIDIA Architecture](https://devblogs.nvidia.com/parallelforall/wp-content/uploads/2016/08/cnn-architecture-624x890.png)]
 
