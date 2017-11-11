@@ -57,14 +57,12 @@ The goals / steps of this project are the following:
 
 [image1]: ./examples/placeholder.png "Model Visualization"
 [train]: ./asset/train_image.png "Training Image"
-[flipped]: ./asset/train_image_flipped.png "Flipped Training Image"
 
 [recovery1]: ./asset/recovery1.png "Recovery Image"
 [recovery2]: ./asset/recovery2.png "Recovery Image"
 [recovery3]: ./asset/recovery3.png "Recovery Image"
 [origin]: ./asset/origin_image.png "Original Image"
 [flipped]: ./asset/flipped_image.png "Flipped Image"
-
 [bgr]: ./asset/bgr.png "BGR Image"
 [rgb]: ./asset/rgb.png "RGB Image"
 
