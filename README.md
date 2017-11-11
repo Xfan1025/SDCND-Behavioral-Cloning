@@ -2,7 +2,7 @@ Table of Contents(updating)
 =================
 
    * [Behavioral Cloning](#behavioral-cloning)
-   * [Check this video out - 2 minutes watching!](#check-this-video-out---2-minutes-watching)
+   * [Check the two videos out!](#check-the-two-videos-ou)
    * [Goal](#goal)
    * [Files & Code Quality](#files-&amp;-code-quality)
       * [Files](#files)
@@ -30,10 +30,16 @@ Table of Contents(updating)
 # Behavioral Cloning
 
 
-# Check this Video Out - 2 minutes watching!
+# Check the two Videos Out!
 This video shows how my model drives the car in autonomous mode in the precipitous road!
 
+
 [![YouTube Video](https://img.youtube.com/vi/iT31m75qitY/0.jpg)](https://www.youtube.com/watch?v=iT31m75qitY)
+
+
+And this is the additional challenge to ask the car to drive only on the left lane of the road.
+
+[![YouTube Video](https://img.youtube.com/vi/ChKhSTpxrOo/0.jpg)](https://www.youtube.com/watch?v=ChKhSTpxrOo)
 
 ---
 
