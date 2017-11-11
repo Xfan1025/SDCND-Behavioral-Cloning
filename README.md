@@ -144,7 +144,9 @@ To capture good driving behavior, I first recorded two laps on track one using c
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to avoid those edges as much as possible. These images show what a recovery looks like:
 
 ![alt text][recovery1]
+
 ![alt text][recovery2]
+
 ![alt text][recovery3]
 
 The same process was applied to track two's model as well.
