@@ -2,7 +2,7 @@ Table of Contents(updating)
 =================
 
    * [Behavioral Cloning](#behavioral-cloning)
-   * [Check the two videos out!](#check-the-two-videos-ou)
+   * [Check the two videos out!](#check-the-two-videos-out)
    * [Goal](#goal)
    * [Files & Code Quality](#files-&amp;-code-quality)
       * [Files](#files)
