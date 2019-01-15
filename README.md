@@ -1,4 +1,4 @@
-Table of Contents(updating)
+Table of Contents
 =================
 
    * [Behavioral Cloning](#behavioral-cloning)
