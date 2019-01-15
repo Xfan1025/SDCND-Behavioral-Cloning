@@ -87,11 +87,6 @@ My project includes the following files:
 * `videos` Please find the links to YouTube videos I recorded at the bottom of this README
 
 
-(I am switching between different OSs frequently, so the data paths vary a lot.
-As a result, I wrote two scripts for generating different models).
-
-(Other utility files such as dependencies will be added soon)
-
 
 ## Functional Code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around track 1 by executing
